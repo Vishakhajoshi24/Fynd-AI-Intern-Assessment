@@ -4,7 +4,7 @@ import os
 
 DATA_FILE = "reviews.csv"
 
-st.title("📊 Admin Dashboard")
+st.title("Admin Dashboard")
 
 if not os.path.exists(DATA_FILE):
     st.info("No reviews submitted yet.")
@@ -14,4 +14,13 @@ else:
     if df.empty:
         st.info("No reviews submitted yet.")
     else:
-        st.dataframe(df, use_container_width=True)
+        for i, row in df.iterrows():
+            st.markdown("### Review")
+            st.write(f" Rating: {row['rating']}")
+            st.write(row['review'])
+
+            st.markdown("### AI Response")
+            st.write(row['ai_response'])
+
+            st.divider()
+
